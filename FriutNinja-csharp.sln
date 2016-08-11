@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{66251150-60B0-D58A-21FF-204911196725}") = "FriutNinja", "Assembly-CSharp-firstpass-vs.csproj", "{C8B8BC18-7BBF-1BA7-6E3D-A23C12D95113}"
+EndProject
+Project("{66251150-60B0-D58A-21FF-204911196725}") = "FriutNinja", "Assembly-CSharp-vs.csproj", "{CC64AEDE-E24A-4A13-A2D4-68634C7B5E8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8B8BC18-7BBF-1BA7-6E3D-A23C12D95113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8B8BC18-7BBF-1BA7-6E3D-A23C12D95113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8B8BC18-7BBF-1BA7-6E3D-A23C12D95113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8B8BC18-7BBF-1BA7-6E3D-A23C12D95113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC64AEDE-E24A-4A13-A2D4-68634C7B5E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC64AEDE-E24A-4A13-A2D4-68634C7B5E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC64AEDE-E24A-4A13-A2D4-68634C7B5E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC64AEDE-E24A-4A13-A2D4-68634C7B5E8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+																																																																																																																																																													GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.IndentWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
