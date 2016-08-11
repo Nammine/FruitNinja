@@ -6,7 +6,10 @@ A 2D kinect game(Fruit Ninja) developed by Unity
 </h2>
 > 这是一款简单的体感切水果游戏，也是学unity3d入门的一个游戏，还未完善
 
-![video](fruit_Ninja.gif)
+* 生命值模式
+![life](firstMode.gif)
+* 计时模式
+![time](secondMode.gif)
 
 <h2 id = "2">
 配置环境
