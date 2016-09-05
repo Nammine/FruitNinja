@@ -40,4 +40,4 @@ A 2D kinect game(Fruit Ninja) developed by Unity
 
 > 对项目的关键部分进行说明
 
-懒死了懒死了，一口气写不完，嘤嘤
+> 更新啦~ 切水果开启了多人模式
