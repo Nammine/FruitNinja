@@ -273,6 +273,27 @@ public class KinectManager : MonoBehaviour
 	{
 		return alUserIds.Count;
 	}
+
+	//return the usersId by the numbers given by program
+	public List<Int64> GetUsersIdByNum(int num){
+		List<Int64> usersId = new List<Int64>(); 
+		if (num > 0) {
+			if(num < alUserIds.Count){
+				for(int i = 0; i < num; i++){
+//					Debug.Log ("the id is : " + alUserIds[i]);
+					usersId.Add(alUserIds[i]);
+				}
+			}
+			else {
+				for(int i = 0; i < alUserIds.Count; i++){
+	//				Debug.Log ("the id is : " + alUserIds[i]);
+				usersId.Add(alUserIds[i]);
+				}
+			}
+			return usersId;
+		}
+		return null;
+	}
 	
 	// returns the UserID by the given index
 	public Int64 GetUserIdByIndex(int i)
@@ -1200,7 +1221,8 @@ public class KinectManager : MonoBehaviour
         dictUserIdToIndex = new Dictionary<Int64, int>();
 	
 		kinectInitialized = true;
-		DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad(gameObject);//找到了！！！！main camera不destroy的原因
+
 		
 		// GUI Text.
 		if(calibrationText != null)

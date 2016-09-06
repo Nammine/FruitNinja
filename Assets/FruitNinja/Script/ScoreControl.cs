@@ -9,7 +9,7 @@ public class ScoreControl : MonoBehaviour {
 		if (true) {
 			//lock (moniter) {
 				score++;
-				print ("score is " + score);
+//				print ("score is " + score);
 			//}
 		}
 

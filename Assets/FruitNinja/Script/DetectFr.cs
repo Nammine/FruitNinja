@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class DetectFr : MonoBehaviour {
 	public HalfFruit fruitClone;
+	//public int PlayerNumber = 2;
 	private GameRule gameRule;
 	private LifeNumControl lifeNumControl;
 	private ScoreControl scoreControl;
@@ -40,32 +42,35 @@ public class DetectFr : MonoBehaviour {
 		    /*判断是否切中水果*/
 			if (KinectManager.Instance.IsUserDetected ()) {
 				//检测到玩家
-				long userId = KinectManager.Instance.GetPrimaryUserID ();//获取玩家id
+			    List<long> players = new List<long>();
+			    players = KinectManager.Instance.GetUsersIdByNum(gameRule.playerNumber);
+				//long userId = KinectManager.Instance.GetPrimaryUserID ();//获取玩家id
 				//Vector2 userPos = KinectManager.Instance.GetUserPosition(userId);//获取整个玩家相对于体感的坐标信息
-
 				int jointRightType = (int)KinectInterop.JointType.HandRight;//表示右手
-				if (KinectManager.Instance.IsJointTracked (userId, jointRightType)) {
-					//追踪到关节点
-					Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointRightType);//获取右手信息
-					Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
-					Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
-					//KinectInterop.HandState rightHandState = KinectManager.Instance.GetRightHandState(userId);rightHandState == KinectInterop.HandState.Open && 
-					if(RectTransformUtility.RectangleContainsScreenPoint (gameObject.transform as RectTransform, HandScrPos, Camera.main)){
-						needDestroyFruit = true;
+			    int jointLeftType = (int)KinectInterop.JointType.HandLeft;//表示左手
+			    foreach(long userId in players){
+					if (KinectManager.Instance.IsJointTracked (userId, jointRightType)) {
+						//追踪到关节点
+						Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointRightType);//获取右手信息
+						Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
+						Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
+						//KinectInterop.HandState rightHandState = KinectManager.Instance.GetRightHandState(userId);rightHandState == KinectInterop.HandState.Open && 
+						if(RectTransformUtility.RectangleContainsScreenPoint (gameObject.transform as RectTransform, HandScrPos, Camera.main)){
+							needDestroyFruit = true;
+						}
+					} 
+					if (KinectManager.Instance.IsJointTracked (userId, jointLeftType)) {
+						//追踪到关节点
+						Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointLeftType);//获取左手信息
+						Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
+						Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
+						//KinectInterop.HandState leftHandState = KinectManager.Instance.GetLeftHandState(userId);leftHandState == KinectInterop.HandState.Open && 
+						if(RectTransformUtility.RectangleContainsScreenPoint (gameObject.transform as RectTransform, HandScrPos, Camera.main)){
+							needDestroyFruit = true;
+						}
 					}
-				} 
-				
-				int jointLeftType = (int)KinectInterop.JointType.HandLeft;//表示左手
-				if (KinectManager.Instance.IsJointTracked (userId, jointLeftType)) {
-					//追踪到关节点
-					Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointLeftType);//获取左手信息
-					Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
-					Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
-					//KinectInterop.HandState leftHandState = KinectManager.Instance.GetLeftHandState(userId);leftHandState == KinectInterop.HandState.Open && 
-					if(RectTransformUtility.RectangleContainsScreenPoint (gameObject.transform as RectTransform, HandScrPos, Camera.main)){
-						needDestroyFruit = true;
-					}
-				} 
+			    }
+ 
 			}
 			
 		/*判断是否出界*/

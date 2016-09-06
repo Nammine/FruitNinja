@@ -9,7 +9,7 @@ public class LifeNumControl : MonoBehaviour {
 		if (lifeNum > 0) {
 			//lock (moniter) {
 				lifeNum--;
-				print ("lifeNum is " + lifeNum);
+//				print ("lifeNum is " + lifeNum);
 			//}
 		}
 	}

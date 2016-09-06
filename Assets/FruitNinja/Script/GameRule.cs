@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameRule : MonoBehaviour {
 	public Fruit fruitClone;//水果预制
+	public Transform leftTrailClone;
+	public Transform rightTrailClone;
 	public int forceX = 300;//x轴的力
 	public int forceY = 7000;//y轴的力
 	public int forceHalfY = 3000;//一半水果上抛的力
@@ -13,8 +16,8 @@ public class GameRule : MonoBehaviour {
 	private const int fruitOutY = -275;//水果掉出界的位置**
 	private Fruit currentFruit;//现在产生的水果
 	//public int number;//产生多少个水果，随机数，用来判断是否产生多个水果
-	public Transform leftTrail;//左手刀光
-	public Transform rightTrail;//右手刀光
+	private Transform[] leftTrail;//左手刀光
+	private Transform[] rightTrail;//右手刀光
 	public int lifeNum = 3;//生命值
 	public int scoreNum = 0;//分数
 	public LifeContent lifeContent;//界面叉叉的显示
@@ -25,6 +28,7 @@ public class GameRule : MonoBehaviour {
 	private int num;
 	public RectTransform lifeSemaphoreColone;
 	private RectTransform lifeControl;
+	public int playerNumber = 2;
 	//AudioSource sound;//声音**
 
 	/* 1.产生多个水果
@@ -34,6 +38,7 @@ public class GameRule : MonoBehaviour {
        5.获取声音**
 	 */
 	void Start () {
+		createMultiTrail ();
 		createMulFruit ();
 		//gameOverImg.gameObject.SetActive (false);
 		GameObject canvasObj = GameObject.FindWithTag("Canvas");
@@ -52,29 +57,35 @@ public class GameRule : MonoBehaviour {
 			/*检测玩家与左右手位置*/
 			if (KinectManager.Instance.IsUserDetected ()) {
 				//检测到玩家
-				long userId = KinectManager.Instance.GetPrimaryUserID ();//获取玩家id
+				//long userId = KinectManager.Instance.GetPrimaryUserID ();//获取玩家id
 				//Vector2 userPos = KinectManager.Instance.GetUserPosition(userId);//获取整个玩家相对于体感的坐标信息
 				/*判断是否检测到右手*/
+				List<long> players = new List<long>();
+				players = KinectManager.Instance.GetUsersIdByNum(playerNumber);
 				int jointRightType = (int)KinectInterop.JointType.HandRight;//表示右手
-				if (KinectManager.Instance.IsJointTracked (userId, jointRightType)) {
-					//追踪到关节点
-					Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointRightType);//获取右手信息
-					rightTrail.position = HandPos;
-					//Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
-					//Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
-					//KinectInterop.HandState rightHandState = KinectManager.Instance.GetRightHandState(userId);rightHandState == KinectInterop.HandState.Open && 
-				} 
-				/*判断是否检测到左手*/
 				int jointLeftType = (int)KinectInterop.JointType.HandLeft;//表示左手
-				if (KinectManager.Instance.IsJointTracked (userId, jointLeftType)) {
-					//追踪到关节点
-					Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointLeftType);//获取左手信息
-					leftTrail.position = HandPos;
-					//Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
-					//Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
-					//KinectInterop.HandState leftHandState = KinectManager.Instance.GetLeftHandState(userId);leftHandState == KinectInterop.HandState.Open && 
+				foreach(long userId in players){
+					if (KinectManager.Instance.IsJointTracked (userId, jointRightType)) {
+						//追踪到关节点
+						Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointRightType);//获取右手信息
+						rightTrail[players.IndexOf(userId)].position = HandPos;
+						//Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
+						//Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
+						//KinectInterop.HandState rightHandState = KinectManager.Instance.GetRightHandState(userId);rightHandState == KinectInterop.HandState.Open && 
+					} 
+					/*判断是否检测到左手*/
+					//int jointLeftType = (int)KinectInterop.JointType.HandLeft;//表示左手
+					if (KinectManager.Instance.IsJointTracked (userId, jointLeftType)) {
+						//追踪到关节点
+						Vector3 HandPos = KinectManager.Instance.GetJointKinectPosition (userId, jointLeftType);//获取左手信息
+						leftTrail[players.IndexOf(userId)].position = HandPos;
+						//Vector3 HandScreenPos = Camera.main.WorldToScreenPoint (HandPos);//右手转换到屏幕坐标
+						//Vector2 HandScrPos = new Vector2 (HandScreenPos.x, HandScreenPos.y);//三维坐标转换到二维
+						//KinectInterop.HandState leftHandState = KinectManager.Instance.GetLeftHandState(userId);leftHandState == KinectInterop.HandState.Open && 
+						
+					}
+				}
 
-				} 
 			}
 
 			/*显示生命值与分数*/
@@ -135,6 +146,17 @@ public class GameRule : MonoBehaviour {
 		//number = num;
 		for (int i = 0; i<num; i++) {
 			createFruit();
+		}
+	}
+
+	private void createMultiTrail(){
+		leftTrail = new Transform[playerNumber];
+		rightTrail = new Transform[playerNumber];
+		for (int i = 0; i < playerNumber; i++) {
+			leftTrail[i] = Instantiate (leftTrailClone) as Transform;
+			leftTrail[i].transform.SetParent(transform);
+			rightTrail[i] = Instantiate (rightTrailClone) as Transform;
+			rightTrail[i].transform.SetParent(transform);
 		}
 	}
 

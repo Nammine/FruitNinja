@@ -132,7 +132,7 @@ public class UseKinectManager : MonoBehaviour {
 		} else if (clickFruit == button2) {
 			r2.AddForce (new Vector2 (0, upForce));
 			if(audio.isPlaying){
-				print ("执行到这一步");
+				//print ("执行到这一步");
 				audio.Stop();
 				PlayMusic(start);
 			}
