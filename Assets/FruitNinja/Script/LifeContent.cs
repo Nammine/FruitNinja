@@ -5,14 +5,16 @@ public class LifeContent : MonoBehaviour {
 	public Toggle life1;
 	public Toggle life2;
 	public Toggle life3;
-	// Use this for initialization
-	void Start () {
-	
+	public int lifeNum = 3;
+	private static LifeContent instance = null;
+	void Awake(){
+		instance = this;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Update(){
+		setLife (lifeNum);
+		if (lifeNum == 0) {
+			MessageDispatcher.Instance.dispatchMessage (0.0f, EntityType.LifeGamePanelEntity, MessageType.Msg_GameOver, new Vector2(0,0), 0);
+		}
 	}
 	public void setLife(int lifeNum){
 		if (lifeNum == 3) {
@@ -33,6 +35,11 @@ public class LifeContent : MonoBehaviour {
 			life1.isOn = false;
 			life2.isOn = false;
 			life3.isOn = false;
+		}
+	}
+	public static LifeContent Instance{
+		get{
+			return instance;
 		}
 	}
 }

@@ -12,19 +12,6 @@ public class HalfFruit : MonoBehaviour {
 	void Awake(){
 		image = GetComponent<Image> ();	
 	}
-	
-	// Use this for initialization
-	void Start () {
-		
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
-	//设置水果类型
 	public void setType(int type){
 		this.type = type;
 		image.sprite = fruitSprites [type];

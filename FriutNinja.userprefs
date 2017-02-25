@@ -1,17 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FruitNinja\Script\GameRule.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FruitNinja\Script\FirstPanel\FirstPanel.cs">
     <Files>
-      <File FileName="Assets\FruitNinja\Script\Game2Rule.cs" Line="107" Column="5" />
-      <File FileName="Assets\FruitNinja\Script\GameRule.cs" Line="56" Column="1" />
-      <File FileName="Assets\FruitNinja\Script\UseKinectManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\KinectScripts\KinectManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\KinectScripts\KinectInterop.cs" Line="1" Column="1" />
-      <File FileName="Assets\KinectScripts\Interfaces\DepthSensorInterface.cs" Line="1" Column="1" />
-      <File FileName="Assets\KinectScripts\Interfaces\Kinect1Interface.cs" Line="1" Column="1" />
-      <File FileName="Assets\KinectScripts\AvatarController.cs" Line="1" Column="1" />
-      <File FileName="Assets\FruitNinja\Script\DetectFr.cs" Line="41" Column="1" />
-      <File FileName="Assets\FruitNinja\Script\DetectFr1.cs" Line="50" Column="39" />
+      <File FileName="Assets\FruitNinja\Script\FirstPanel\ExitMode.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\Canvas\FirstPanelState.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\Canvas\GameOverState.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\Canvas\LifeGameState.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\Canvas\PanelCenter.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\Canvas\TimeGameState.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\FirstPanel\ExitModeChooseState.cs" Line="1" Column="1" />
+      <File FileName="Assets\FruitNinja\Script\FirstPanel\FirstPanel.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
